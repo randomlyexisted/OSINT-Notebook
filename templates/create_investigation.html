@@ -17,7 +17,7 @@
             <h2>Create Investigation</h2>
             <p>Start a new OSINT research case.</p>
             
-            <form>
+            <form method="POST" action="{{ url_for('create_investigation') }}">
                 <label for="name" >
                     Investigation Name
                 </label>
