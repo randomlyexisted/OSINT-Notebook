@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Notebook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>OSINT Notebook</h1>
+        <a href="/investigation/new" class="button">
+            + New investigation
+        </a>
+    </header>
+    <main>
+        <section class="welcome">
+            <h2>Investigation Dashboard</h2>
+            <p>Organize and document your OSINT research.</p>
+        </section>
+        <section>
+            <h2>Investigation</h2>
+            <div class="investigation-grid">
+                {% for investigation in investigation %}
+                <div class="investigation-card">
+                    <h3>{{ investigation.name }}</h3>
+                    <p>{{ investigation.description }}</p>
+                    <button>Open Investigation</button>
+
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>
