@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ investigation["name"] }} - OSINT Notebook</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>OSINT Notebook</h1>
+
+        <a href="/" class="button">
+            Dashboard
+        </a>
+
+    </header>
+
+
+    <main>
+
+        <section class="investigation-header">
+
+            <h2>
+                {{ investigation["name"] }}
+            </h2>
+
+            <p>
+                {{ investigation["description"] }}
+            </p>
+
+        </section>
+
+
+        <section class="workspace-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>People</h2>
+
+                    <p>
+                        {{ people|length }} people
+                    </p>
+                </div>
+
+                <a
+                    href="{{ url_for(
+                        'create_person',
+                        investigation_id=investigation['id']
+                    ) }}"
+                    class="button"
+                >
+                    + Add Person
+                </a>
+
+            </div>
+
+
+            {% if people %}
+
+                <div class="people-list">
+
+                    {% for person in people %}
+
+                        <div class="person-card">
+
+                            <h3>
+                                {{ person["name"] }}
+                            </h3>
+
+                            {% if person["description"] %}
+
+                                <p>
+                                    {{ person["description"] }}
+                                </p>
+
+                            {% else %}
+
+                                <p class="muted">
+                                    No description added.
+                                </p>
+
+                            {% endif %}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <h3>No people added</h3>
+
+                    <p>
+                        Add a person to begin building this investigation.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <section class="notes-section">
+
+            <h2>Investigation Notes</h2>
+
+            <p>
+                No notes have been added yet.
+            </p>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

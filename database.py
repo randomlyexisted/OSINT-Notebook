@@ -20,5 +20,19 @@ def initialize_database():
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
+
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS people (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            investigation_id INTEGER NOT NULL,
+            name TEXT NOT NULL,
+            description TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            
+            FOREIGN KEY (investigation_id)
+                REFERENCES investigations(id)
+                ON DELETE CASCADE
+        )
+    """)
     connection.commit()
     connection.close()

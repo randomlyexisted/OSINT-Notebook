@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Person - OSINT Notebook</title>
+
+    <link rel = "stylesheet" href="{{ url_for('static', filename='css/style.css') }}"
+</head>
+<body>
+    <header>
+        <h1>OSINT Notebook</h1>
+        <a href="{{ url_for('view_investigation', investigation_id=investigation['id']) }}" class="button">Back to Investigation</a>
+    </header>
+    <main>
+        <section class="form-container">
+            <h2>Add Person</h2>
+            <p>
+                Add a person to <strong>{{ investigation["name"] }}</strong>.
+            </p>
+            <form method = "POST" action="{{ url_for('create_person', investigation_id=investigation['id']) }}">
+                <label for="name" >
+                    Name
+                </label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+                <label for="description">Description</label>
+
+                <textarea id="description" name="description" placeholder="Role, context, or other relevant information..." rows="5"></textarea>
+                <button type = "submit">Add Person</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

@@ -21,14 +21,30 @@
         <section>
             <h2>Investigation</h2>
             <div class="investigation-grid">
-                {% for investigation in investigation %}
-                <div class="investigation-card">
-                    <h3>{{ investigation.name }}</h3>
-                    <p>{{ investigation.description }}</p>
-                    <button>Open Investigation</button>
-
-                </div>
-                {% endfor %}
+                {% if investigations %}
+                    {% for investigation in investigations %}
+                        <div class="investigation-card">
+                            <h3>{{ investigation["name"] }}</h3>
+                            <p>{{ investigation["description"] }}</p>
+                            <a href="{{ url_for('view_investigation', investigation_id=investigation['id']) }}" class="button">
+                                Open Investigation
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <h3>No investigations yet</h3>
+                        <p>
+                            Create your first investigation to get started.
+                        </p>
+                        <a
+                            href="{{ url_for('create_investigation') }}"
+                            class="button"
+                        >
+                            + Create Investigation
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </section>
     </main>
